@@ -8,17 +8,22 @@ class CreateUser
 
   def do input
     # validate input
+    unless input.has_shape? :handle => String
+      raise ArgumentError, 'invalid input format'
+    end
     
     # set default id and values for new User entity
-    
+    input[:id] = -1    
+
     # create/populate User object
-    # use: User.populate
+    user = User.new
+    user.populate input
     
     # save user to jack
-    # use: UserJack.save, User.to_hash
-    
+    result = @user_jack.save user.to_hash
+ 
     # return the result
-    
+    result    
   end
 
 end
