@@ -8,18 +8,22 @@ class RemoveStatus
 
   def do input
     # validate input
-    
-    # get the status update from the jack to see that it exists
-    # use: StatusJack.get
-    
+    unless input.has_shape? :id => Fixnum
+      raise ArgumentError, 'invalid input format'
+    end
+ 
+    # get the status update from the jack to see that it 
+    data = @status_jack.get :id => input[:id]
+ 
     # create/populate Status object
-    # use: Status.populate
-    
+    status = Status.new
+    status.populate data
+ 
     # remove the Status object
-    # use: StatusJack.remove
-    
+    result = @status_jack.remove :id => input[:id]
+ 
     # return the result
-    
+    result    
   end
 
 end

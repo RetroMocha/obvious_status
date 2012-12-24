@@ -65,11 +65,24 @@ describe StatusJackContract do
   end
     
   describe '.remove_contract' do
-    it 'should remove data with valid input'
+    it 'should remove data with valid input' do
+      input = { :id => 1 }
+      jack = StatusJackDouble.create :default
+      result = jack.remove input
+      result.should be true
+    end
 
-    it 'should raise an error with invalid input'
+    it 'should raise an error with invalid input' do
+      input = { :id => nil }
+      jack = StatusJackDouble.create :default
+      expect { jack.remove input }.to raise_error ContractInputError
+    end
 
-    it 'should raise an error with invalid output'
+    it 'should raise an error with invalid output' do
+      input = { :id => 1 }
+      jack = StatusJackDouble.create :bad_output
+      expect { jack.remove input }.to raise_error ContractOutputError
+    end
 
   end
      

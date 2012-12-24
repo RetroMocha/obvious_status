@@ -28,6 +28,9 @@ class StatusJack_Default < StatusJackContract
     ]
   end
 
+  def remove input
+    true
+  end
 end
 
 class StatusJack_BadOutput < StatusJackContract
@@ -41,6 +44,10 @@ class StatusJack_BadOutput < StatusJackContract
   end
 
   def list 
+    nil
+  end
+
+  def remove input
     nil
   end
 end

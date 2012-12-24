@@ -25,8 +25,8 @@ class StatusJackContract < Contract
   end
     
   def remove_contract input
-    input_shape = {}
-    output_shape = {}
+    input_shape = { :id => Fixnum }
+    output_shape = true 
     call_method :remove_alias, input, input_shape, output_shape
   end
      
