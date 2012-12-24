@@ -1,13 +1,15 @@
 require 'obvious'
+
+require_relative '../entities/status'
    
 class StatusJackContract < Contract
   def self.contracts
-    ["save", "get", "list", "remove"]
+    ['save', 'get', 'list', 'remove']
   end
 
   def save_contract input
-    input_shape = {}
-    output_shape = {}
+    input_shape = Status.shape
+    output_shape = Status.shape
     call_method :save_alias, input, input_shape, output_shape
   end
     

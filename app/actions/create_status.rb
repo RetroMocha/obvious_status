@@ -8,17 +8,22 @@ class CreateStatus
 
   def do input
     # validate input
+    unless input.has_shape? :user_id => Fixnum, :text => String
+      raise ArgumentError, 'invalid input format'
+    end
     
     # set default id and values for new Status entity
+    input[:id] = -1 # by convention id of -1 will tell the jack save method to create a new row/document/whatever
     
     # create/populate Status object
-    # use: Status.populate
+    status = Status.new
+    status.populate input
     
     # save status to jack
-    # use: StatusJack.save, Status.to_hash
-    
+    result = @status_jack.save status.to_hash   
+ 
     # return the result
-    
+    result 
   end
 
 end
