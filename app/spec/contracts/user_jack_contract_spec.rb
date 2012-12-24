@@ -45,6 +45,22 @@ describe UserJackContract do
       expect { jack.get input }.to raise_error ContractOutputError 
     end 
   end
-     
+
+  describe '.list_contract' do
+    it 'should get a list of users' do
+      jack = UserJackDouble.create :default
+      result = jack.list
+      result.should eq [
+        { :handle => "chef", :id => 1 }, 
+        { :handle => "ninja", :id => 2 }
+      ]
+    end
+
+    it 'should raise an error with invalid output' do
+      jack = UserJackDouble.create :bad_output
+      expect { jack.list }.to raise_error ContractOutputError
+    end
+
+  end     
 end
 

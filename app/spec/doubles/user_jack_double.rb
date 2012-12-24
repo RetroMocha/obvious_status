@@ -19,6 +19,13 @@ class UserJack_Default < UserJackContract
   def get input
     { :handle => 'chef', :id => 1 }
   end
+
+  def list 
+    [
+      { :handle => 'chef', :id => 1 },
+      { :handle => 'ninja', :id => 2 }
+    ]
+  end
 end
 
 class UserJack_BadOutput < UserJackContract
@@ -27,6 +34,10 @@ class UserJack_BadOutput < UserJackContract
   end
 
   def get input
+    nil
+  end
+
+  def list
     nil
   end
 end
