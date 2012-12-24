@@ -6,18 +6,19 @@ class ListStatuses
     @status_jack = status_jack
   end
 
-  def do input
-    # validate input
-    
+  def do
     # get the status updates from the jack
-    # use: StatusJack.list
-    
+    data = @status_jack.list
+ 
     # create/populate Status objects
-    # use: Status.populate
-    
+    # we are populating each list item as an entity for validation
+    data.each do |info|
+      status = Status.new
+      status.populate info
+    end
+ 
     # return the result
-    # use: Status.to_hash
-    
+    data  # if everything is valid we just return what we got back from the jack    
   end
 
 end

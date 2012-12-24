@@ -21,6 +21,12 @@ class StatusJack_Default < StatusJackContract
     { :user_id => 1, :text => 'making a sandwich', :id => 1 }
   end
 
+  def list
+    [
+      { :user_id => 1, :text => 'making a sandwich', :id => 1 },
+      { :user_id => 1, :text => 'making another sandwich', :id => 2 }
+    ]
+  end
 
 end
 
@@ -32,5 +38,9 @@ class StatusJack_BadOutput < StatusJackContract
 
   def get input
     nil 
+  end
+
+  def list 
+    nil
   end
 end

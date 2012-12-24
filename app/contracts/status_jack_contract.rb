@@ -19,10 +19,9 @@ class StatusJackContract < Contract
     call_method :get_alias, input, input_shape, output_shape
   end
     
-  def list_contract input
-    input_shape = {}
-    output_shape = {}
-    call_method :list_alias, input, input_shape, output_shape
+  def list_contract 
+    output_shape = [ Status.shape ] 
+    call_method :list_alias, nil, nil, output_shape
   end
     
   def remove_contract input

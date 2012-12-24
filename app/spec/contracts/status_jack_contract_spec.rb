@@ -48,11 +48,19 @@ describe StatusJackContract do
   end
     
   describe '.list_contract' do
-    it 'should list data with valid input'
+    it 'should list data with valid input' do
+      jack = StatusJackDouble.create :default
+      result = jack.list
+      result.should eq [ 
+        { :user_id => 1, :text => 'making a sandwich', :id => 1 },
+        { :user_id => 1, :text => 'making another sandwich', :id => 2 }
+      ] 
+    end
 
-    it 'should raise an error with invalid input'
-
-    it 'should raise an error with invalid output'
+    it 'should raise an error with invalid output' do
+      jack = StatusJackDouble.create :bad_output
+      expect { jack.list }.to raise_error ContractOutputError
+    end
 
   end
     
