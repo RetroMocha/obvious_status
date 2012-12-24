@@ -17,6 +17,11 @@ class StatusJack_Default < StatusJackContract
     { :user_id => 1, :text => 'making a sandwich', :id => 1 }
   end
 
+  def get input
+    { :user_id => 1, :text => 'making a sandwich', :id => 1 }
+  end
+
+
 end
 
 class StatusJack_BadOutput < StatusJackContract
@@ -25,4 +30,7 @@ class StatusJack_BadOutput < StatusJackContract
     nil
   end
 
+  def get input
+    nil 
+  end
 end

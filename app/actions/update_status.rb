@@ -8,19 +8,23 @@ class UpdateStatus
 
   def do input
     # validate input
+    unless input.has_shape? Status.shape
+      raise ArgumentError, 'invalid input format'
+    end
     
     # get the status update from the jack
-    # use: StatusJack.get
+    data = @status_jack.get :id => input[:id]
     
     # create/populate Status object
-    # use: Status.populate
-    
+    status = Status.new
+    status.populate data
+ 
     # update the Status object and save
-    # use: Status.populate, StatusJack.save, Status.to_hash
+    status.populate input
+    result = @status_jack.save status.to_hash
     
     # return the result
-    # use: Status.to_hash
-    
+    result 
   end
 
 end
