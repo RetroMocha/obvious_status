@@ -8,16 +8,19 @@ class GetUser
 
   def do input
     # validate input
+    unless input.has_shape? :id => Fixnum
+      raise ArgumentError, 'invalid input format'
+    end
     
     # get the user from the jack
-    # use: UserJack.get
-    
+    data = @user_jack.get :id => input[:id]    
+
     # create/populate User object
-    # use: User.populate
-    
+    user = User.new
+    user.populate data
+     
     # return the result
-    # use: User.to_hash
-    
+    user.to_hash 
   end
 
 end

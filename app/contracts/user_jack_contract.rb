@@ -13,8 +13,8 @@ class UserJackContract < Contract
   end
     
   def get_contract input
-    input_shape = {}
-    output_shape = {}
+    input_shape = { :id => Fixnum }
+    output_shape = User.shape 
     call_method :get_alias, input, input_shape, output_shape
   end
      

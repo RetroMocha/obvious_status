@@ -15,10 +15,18 @@ class UserJack_Default < UserJackContract
   def save input
     { :handle => 'chef', :id => 1 }
   end
+
+  def get input
+    { :handle => 'chef', :id => 1 }
+  end
 end
 
 class UserJack_BadOutput < UserJackContract
   def save input
+    nil
+  end
+
+  def get input
     nil
   end
 end
