@@ -1,0 +1,10 @@
+Action: CreateUser 
+Description: should create a new user
+Code:
+  - c: validate input
+  - c: set default id and values for new User entity
+  - c: create/populate User object
+    requires: User.populate
+  - c: save user to jack
+    requires: UserJack.save, User.to_hash
+  - c: return the result 

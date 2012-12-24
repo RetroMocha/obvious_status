@@ -1,0 +1,10 @@
+Action: CreateStatus 
+Description: should create a status update
+Code:
+  - c: validate input
+  - c: set default id and values for new Status entity
+  - c: create/populate Status object
+    requires: Status.populate
+  - c: save status to jack
+    requires: StatusJack.save, Status.to_hash
+  - c: return the result 

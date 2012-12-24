@@ -1,0 +1,11 @@
+Action: ListStatuses 
+Description: should get a list of status updates and return the hash value 
+Code:
+  - c: validate input
+  - c: get the status updates from the jack
+    requires: StatusJack.list
+  - c: create/populate Status objects
+    requires: Status.populate
+  - c: return the result 
+    requires: Status.to_hash
+

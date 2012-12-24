@@ -1,0 +1,11 @@
+Action: RemoveStatus 
+Description: should remove a status update and return true 
+Code:
+  - c: validate input
+  - c: get the status update from the jack to see that it exists
+    requires: StatusJack.get 
+  - c: create/populate Status object
+    requires: Status.populate
+  - c: remove the Status object
+    requires: StatusJack.remove
+  - c: return the result 
