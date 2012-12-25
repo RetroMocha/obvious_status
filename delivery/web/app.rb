@@ -90,6 +90,10 @@ get '/status/:id/remove' do
   input = { :id => params[:id].to_i }
   action = GetStatus.new StatusJack.new
   @status = action.do input
+ 
+  input = { :id => @status[:user_id] }
+  action = GetUser.new UserJack.new
+  @user = action.do input
   slim :remove_status
 end
 
