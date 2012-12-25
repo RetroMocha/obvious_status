@@ -2,6 +2,7 @@ require 'sinatra'
 require 'slim'
 
 require_relative '../../app/actions/list_statuses'
+require_relative '../../app/actions/create_status'
 
 require_relative '../../app/actions/get_user'
 require_relative '../../app/actions/list_users'
@@ -9,9 +10,7 @@ require_relative '../../app/actions/list_users'
 require_relative '../../external/status_jack'
 require_relative '../../external/user_jack'
 
-
 set :slim, :pretty => true
-
 
 get '/' do
   # get list of statuses 
@@ -34,7 +33,7 @@ get '/:user/create-status' do
 end
 
 post '/:user/create-status' do
-  input = { :user_id => params[:user], :text => params[:text] }
+  input = { :user_id => params[:user_id].to_i, :text => params[:text] }
   action = CreateStatus.new StatusJack.new
   @status = action.do input
   redirect '/'

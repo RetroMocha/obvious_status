@@ -10,4 +10,8 @@ class StatusJack < StatusJackContract
   def list
     @plug.list
   end
+
+  def save input
+    @plug.save input
+  end
 end
