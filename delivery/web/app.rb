@@ -3,7 +3,13 @@ require 'slim'
 
 require_relative '../../app/actions/list_statuses'
 
+require_relative '../../app/actions/list_users'
+
 require_relative '../../external/status_jack'
+require_relative '../../external/user_jack'
+
+
+set :slim, :pretty => true
 
 
 get '/' do
