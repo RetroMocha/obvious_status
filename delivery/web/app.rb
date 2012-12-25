@@ -16,11 +16,15 @@ get '/' do
   # get list of statuses 
   action = ListStatuses.new StatusJack.new
   @statuses = action.do
-  @statuses.to_s
 
-  # get list of user
-  @users = ListUsers.new UserJack.new
-  @users.to_s
+  # get list of users
+  action = ListUsers.new UserJack.new
+  users = action.do
+  @users = {}
+  users.each do |user|
+    @users[user[:id]] = user
+  end
+
   slim :index
 end
 

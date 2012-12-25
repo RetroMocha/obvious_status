@@ -1,1 +1,5 @@
- 
+h1 What is your status?
+
+- for status in @statuses
+  div
+    | #{status[:text]} - <a href='/#{status[:id]}/create-status'>#{@users[status[:user_id]][:handle]}</a>
