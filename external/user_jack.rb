@@ -10,4 +10,8 @@ class UserJack
   def list
     @plug.list
   end
+
+  def get input
+    @plug.get input
+  end
 end

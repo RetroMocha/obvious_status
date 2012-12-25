@@ -3,6 +3,7 @@ require 'slim'
 
 require_relative '../../app/actions/list_statuses'
 
+require_relative '../../app/actions/get_user'
 require_relative '../../app/actions/list_users'
 
 require_relative '../../external/status_jack'
@@ -51,21 +52,21 @@ post '/sign-up' do
 end
 
 get '/user/:id' do
-  input = { :id => input[:id] }
+  input = { :id => params[:id].to_i }
   action = GetUser.new UserJack.new
   @user = action.do input
   slim :get_user
 end
 
 get '/status/:id' do
-  input = { :id => input[:id] }
+  input = { :id => params[:id] }
   action = GetStatus.new StatusJack.new
   @status = action.do input
   slim :get_status
 end
 
 get '/status/:id/update' do
-  input = { :id => input[:id] }
+  input = { :id => params[:id] }
   action = GetStatus.new StatusJack.new
   @status = action.do input
   slim :update_status
@@ -79,7 +80,7 @@ post '/status/:id/update' do
 end
 
 get '/status/:id/remove' do
-  input = { :id => input[:id] }
+  input = { :id => params[:id] }
   action = GetStatus.new StatusJack.new
   @status = action.do input
   slim :remove_status
