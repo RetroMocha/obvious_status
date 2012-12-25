@@ -2,4 +2,4 @@ h1 What is your status?
 
 - for status in @statuses
   div
-    | #{status[:text]} - <a href='/user/#{status[:user_id]}'>#{@users[status[:user_id]][:handle]}</a>
+    | #{status[:text]} [<a href='/status/#{status[:id]}'>link</a>]- <a href='/user/#{status[:user_id]}'>#{@users[status[:user_id]][:handle]}</a>

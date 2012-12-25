@@ -3,6 +3,7 @@ require 'slim'
 
 require_relative '../../app/actions/list_statuses'
 require_relative '../../app/actions/create_status'
+require_relative '../../app/actions/get_status'
 
 require_relative '../../app/actions/get_user'
 require_relative '../../app/actions/list_users'
@@ -59,9 +60,13 @@ get '/user/:id' do
 end
 
 get '/status/:id' do
-  input = { :id => params[:id] }
+  input = { :id => params[:id].to_i }
   action = GetStatus.new StatusJack.new
   @status = action.do input
+
+  input = { :id => @status[:user_id] }
+  action = GetUser.new UserJack.new
+  @user = action.do input
   slim :get_status
 end
 

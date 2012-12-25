@@ -1,0 +1,10 @@
+h2
+  | #{@status[:text]}
+p style="width: 50%; text-align: right"
+  | - <a href='/user/#{@status[:user_id]}'>#{@user[:handle]}</a>
+
+br
+br
+a.btn href="/status/#{@status[:id]}/update" Edit Status
+|&nbsp; &nbsp;
+a.btn.btn-danger href="/status/#{@status[:id]}/remove" Remove Status
