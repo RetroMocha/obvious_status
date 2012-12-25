@@ -6,6 +6,7 @@ require_relative '../../app/actions/create_status'
 
 require_relative '../../app/actions/get_user'
 require_relative '../../app/actions/list_users'
+require_relative '../../app/actions/create_user'
 
 require_relative '../../external/status_jack'
 require_relative '../../external/user_jack'

@@ -1,10 +1,10 @@
 require_relative '../app/contracts/user_jack_contract'
-require_relative 'user_plug_for_fs'
+require_relative 'fs_plug'
 
 class UserJack
 
   def initialize
-    @plug = UserPlugForFs.new
+    @plug = FsPlug.new 'data/users.json'
   end
 
   def list
@@ -13,5 +13,13 @@ class UserJack
 
   def get input
     @plug.get input
+  end
+
+  def save input
+    @plug.save input
+  end
+
+  def remove input
+    @plug.remove input
   end
 end
