@@ -4,6 +4,8 @@ require 'slim'
 require_relative '../../app/actions/list_statuses'
 require_relative '../../app/actions/create_status'
 require_relative '../../app/actions/get_status'
+require_relative '../../app/actions/update_status'
+require_relative '../../app/actions/remove_status'
 
 require_relative '../../app/actions/get_user'
 require_relative '../../app/actions/list_users'
@@ -71,28 +73,28 @@ get '/status/:id' do
 end
 
 get '/status/:id/update' do
-  input = { :id => params[:id] }
+  input = { :id => params[:id].to_i }
   action = GetStatus.new StatusJack.new
   @status = action.do input
   slim :update_status
 end
 
 post '/status/:id/update' do
-  input = { :id => params[:id], :text => params[:text], :user_id => params[:user_id] }
+  input = { :id => params[:id].to_i, :text => params[:text], :user_id => params[:user_id].to_i }
   action = UpdateStatus.new StatusJack.new
   @status = action.do input
   redirect "/status/#{@status[:id]}" 
 end
 
 get '/status/:id/remove' do
-  input = { :id => params[:id] }
+  input = { :id => params[:id].to_i }
   action = GetStatus.new StatusJack.new
   @status = action.do input
   slim :remove_status
 end
 
 post '/status/:id/remove' do
-  input = { :id => params[:id] }
+  input = { :id => params[:id].to_i }
   action = RemoveStatus.new StatusJack.new
   result = action.do input
   if result == true
