@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'slim'
+require 'sequel'
 
 require_relative '../../app/actions/list_statuses'
 require_relative '../../app/actions/create_status'
@@ -15,6 +16,8 @@ require_relative '../../external/status_jack'
 require_relative '../../external/user_jack'
 
 set :slim, :pretty => true
+
+DB = Sequel.connect 'mysql://127.0.0.1:3306/status?user=root' # this should probably be set as an environment variable
 
 get '/' do
   # get list of statuses 

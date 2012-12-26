@@ -1,10 +1,12 @@
 require_relative '../app/contracts/user_jack_contract'
 require_relative 'fs_plug'
+require_relative 'mysql_plug'
 
 class UserJack
 
   def initialize
     @plug = FsPlug.new 'data/users.json'
+    @plug = MysqlPlug.new :users
   end
 
   def list
