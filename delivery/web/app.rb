@@ -18,6 +18,9 @@ require_relative '../../external/user_jack'
 set :slim, :pretty => true
 
 DB = Sequel.connect 'mysql://127.0.0.1:3306/status?user=root' # this should probably be set as an environment variable
+ 
+MONGO_SESSION = Moped::Session.new ['127.0.0.1:27017'] 
+MONGO_SESSION.use 'status' 
 
 get '/' do
   # get list of statuses 
