@@ -24,7 +24,6 @@ MONGO_SESSION = Moped::Session.new ['127.0.0.1:27017']
 MONGO_SESSION.use 'status' 
 
 get '/status/list' do
-  # get list of statuses 
   action = ListStatuses.new StatusJack.new
   JSON.generate action.do
 end
@@ -50,11 +49,12 @@ end
 post '/status/:id/remove' do
   input = { :id => params[:id].to_i }
   action = RemoveStatus.new StatusJack.new
-  JSON.generate action.do input
+  result = action.do input
+  output = { :success => result }
+  JSON.generate output 
 end
 
 get '/user/list' do
-  # get list of users
   action = ListUsers.new UserJack.new
   JSON.generate action.do
 end

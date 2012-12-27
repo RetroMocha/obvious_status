@@ -5,10 +5,19 @@ require_relative 'mongo_plug'
 
 class UserJack
 
-  def initialize
-    @plug = FsPlug.new 'data/users.json'
-    @plug = MysqlPlug.new :users
-    @plug = MongoPlug.new :users
+  def initialize plug = nil
+    case plug
+    when :fs 
+      @plug = FsPlug.new 'data/users.json'
+    when :mysql
+      @plug = MysqlPlug.new :users
+    when :mongo
+      @plug = MongoPlug.new :users
+    when :api
+      @plug = ApiPlug.new :user
+    else
+      @plug = FsPlug.new 'data/users.json' 
+    end
   end
 
   def list
