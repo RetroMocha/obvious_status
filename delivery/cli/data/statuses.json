@@ -1,0 +1,22 @@
+[
+  {
+    "text": "making a sandwich",
+    "user_id": 1,
+    "id": 1
+  },
+  {
+    "text": "doing something awesome",
+    "user_id": 1,
+    "id": 2
+  },
+  {
+    "text": "hello world",
+    "user_id": 2,
+    "id": 3
+  },
+  {
+    "text": "I love the cheese",
+    "user_id": 1,
+    "id": 5
+  }
+]
