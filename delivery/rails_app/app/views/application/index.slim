@@ -1,0 +1,12 @@
+
+div.row
+  div.span8
+    h1 What is your status?
+    - for status in @statuses
+      div
+        | #{status[:text]} [<a href='/status/#{status[:id]}'>link</a>]- <a href='/user/#{status[:user_id]}'>#{@users[status[:user_id]][:handle]}</a>
+  div.span2
+    h3 Users
+    - for user in @users
+      a href='/user/#{user[0]}' #{user[1][:handle]}
+      br
