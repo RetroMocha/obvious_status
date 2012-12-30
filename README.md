@@ -5,10 +5,22 @@ Status is an implementation of a twitter style status update app based on the Ob
 
 The purpose of this project is be an example app to help explain the concepts of Obvious. 
 
-Thanks to Obvious, it was trivially easy to make Status run as a web app, a json api, a command line app, 
+Thanks to Obvious, it was trivially easy to make Status run as a rails app, Sinatra web app, a Sinatra json api, a command line app, 
 and even a desktop app without changing any of the app/ code. Also, the data layer is pluggable, so Status apps can 
 be powered by JSON files, MySQL, MongoDB, or even the Status json api by simply pointing the jack objects at different 
 database plugs. 
+
+Basic Structure
+---------------
+
+Obvious is not traditional MVC. It's a different approach. The business logic and the data persistence are separated into
+separate folders. The app folder contains your business rules and entities, which would be the M in the MVC pattern. The 
+external folder contains your data persistence layer - ORM's, API's, caching, queues. The delivery folder is where the VC
+in MVC would live. That is where you find rails, sinatra, desktop app, and a cli apps. Each delivery mechanism is responsible
+for integrating together app actions and jacks to make the system do things.
+
+Note - in this example app the app folder and external folder live alongside your delivery mechanisms, but you could 
+easily put your app or external jacks/plugs into separate gems. 
 
 Running The Tests
 -----------------
@@ -30,6 +42,12 @@ To make all the apps work, you will need to install the following gems: obvious,
 rest-client. You can comment out the plugs that you don't need if you want to reduce dependencies or have problems installing
 a particular gem.
 
+To run the rails app run:
+
+    cd delivery/rails_app/
+    bundle install
+    rails server
+
 To run the web app run:
 
     rake server
@@ -38,7 +56,7 @@ And navigate to http://localhost:9393/
 
 To run the api app run:
 
-    rake server
+    rake api
 
 And navigate to http://localhost:9394/
 
