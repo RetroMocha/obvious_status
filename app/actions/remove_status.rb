@@ -12,18 +12,8 @@ class RemoveStatus
       raise ArgumentError, 'invalid input format'
     end
  
-    # get the status update from the jack to see that it 
-    data = @status_jack.get :id => input[:id]
- 
-    # create/populate Status object
-    status = Status.new
-    status.populate data
- 
-    # remove the Status object
-    result = @status_jack.remove :id => input[:id]
- 
-    # return the result
-    result    
+    # remove the Status object and return the result
+    @status_jack.remove :id => input[:id]
   end
 
 end

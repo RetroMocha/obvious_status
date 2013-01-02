@@ -7,16 +7,16 @@ class ListUsers
   end
 
   def do
-    # get the users from the jack
-    data = @user_jack.list
+    user_data = @user_jack.list
+    validate user_data
+    user_data
+  end
 
-    # create/populate User objects
-    data.each do |entry| 
+  def validate user_data
+    # create/populate User objects for validation
+    user_data.each do |entry| 
       user = User.new
       user.populate entry  
     end
-
-    # return the result
-    data
   end
 end
