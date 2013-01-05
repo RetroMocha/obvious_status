@@ -27,11 +27,12 @@ Running The Tests
 
 To run the tests for the app/ is easy. In the obvious_status project root run:
 
+    bundle install
     rake rspec
 
 To continuously run the tests using guard, install guard and run:
 
-    guard
+    bundle exec guard
 
 The tests should all be green and run in about 0.02 seconds. 
 
@@ -50,12 +51,14 @@ To run the rails app run:
 
 To run the web app run:
 
+    bundle install
     rake server
 
 And navigate to http://localhost:9393/
 
 To run the api app run:
 
+    bundle install
     rake api
 
 And navigate to http://localhost:9394/
