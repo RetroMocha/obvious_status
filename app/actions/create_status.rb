@@ -6,7 +6,7 @@ class CreateStatus
     @status_jack = status_jack
   end
 
-  def do input
+  def execute input
     # validate input
     unless input.has_shape? :user_id => Fixnum, :text => String
       raise ArgumentError, 'invalid input format'

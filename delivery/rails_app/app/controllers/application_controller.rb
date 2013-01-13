@@ -11,11 +11,11 @@ class ApplicationController < ActionController::Base
   def index
    # get list of statuses 
     action = ListStatuses.new StatusJack.new
-    @statuses = action.do
+    @statuses = action.execute
 
     # get list of users
     action = ListUsers.new UserJack.new
-    users = action.do
+    users = action.execute
     @users = {}
     users.each do |user|
       @users[user[:id]] = user
