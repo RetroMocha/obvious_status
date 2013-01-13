@@ -9,14 +9,14 @@ describe CreateStatus do
       :text => 'making a sandwich'
     }
     action = CreateStatus.new StatusJackDouble.create :default
-    result = action.do input
+    result = action.execute input
     result.should eq :user_id => 1, :text => 'making a sandwich', :id => 1
   end
 
   it 'should raise an error with invalid input' do
     input = { :user_id => nil, :text => nil }
     action = CreateStatus.new StatusJackDouble.create :default
-    expect { action.do input }.to raise_error ArgumentError
+    expect { action.execute input }.to raise_error ArgumentError
   end
 
 end

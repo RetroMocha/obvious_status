@@ -17,10 +17,10 @@ Shoes.app :title => 'Status' do
   
   def draw_ui
     action = ListUsers.new UserJack.new
-    @users = action.do
+    @users = action.execute
 
     action = ListStatuses.new StatusJack.new
-    @statuses = action.do
+    @statuses = action.execute
 
     para 'Users:'
     @users.each do |user|
@@ -30,7 +30,7 @@ Shoes.app :title => 'Status' do
           status = edit_box ''
           button 'Create status' do
             action = CreateStatus.new StatusJack.new
-            result = action.do :user_id => user[:id], :text => status.text
+            result = action.execute :user_id => user[:id], :text => status.text
             owner.clear
             owner.draw_ui    
             close

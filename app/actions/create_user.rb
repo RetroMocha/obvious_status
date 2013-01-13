@@ -6,7 +6,7 @@ class CreateUser
     @user_jack = user_jack
   end
 
-  def do input
+  def execute input
     # validate input
     unless input.has_shape? :handle => String
       raise ArgumentError, 'invalid input format'

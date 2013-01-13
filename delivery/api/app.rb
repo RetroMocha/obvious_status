@@ -25,49 +25,49 @@ MONGO_SESSION.use 'status'
 
 get '/status/list' do
   action = ListStatuses.new StatusJack.new
-  JSON.generate action.do
+  JSON.generate action.execute
 end
 
 post '/status/create' do
   input = { :user_id => params[:user_id].to_i, :text => params[:text] }
   action = CreateStatus.new StatusJack.new
-  JSON.generate action.do input
+  JSON.generate action.execute input
 end
 
 get '/status/:id' do
   input = { :id => params[:id].to_i }
   action = GetStatus.new StatusJack.new
-  JSON.generate action.do input
+  JSON.generate action.execute input
 end
 
 post '/status/:id/update' do
   input = { :id => params[:id].to_i, :text => params[:text], :user_id => params[:user_id].to_i }
   action = UpdateStatus.new StatusJack.new
-  JSON.generate action.do input
+  JSON.generate action.execute input
 end
 
 post '/status/:id/remove' do
   input = { :id => params[:id].to_i }
   action = RemoveStatus.new StatusJack.new
-  result = action.do input
+  result = action.execute input
   output = { :success => result }
   JSON.generate output 
 end
 
 get '/user/list' do
   action = ListUsers.new UserJack.new
-  JSON.generate action.do
+  JSON.generate action.execute
 end
 
 post '/user/create' do
   input = { :handle => params[:handle] }
   action = CreateUser.new UserJack.new
-  JSON.generate action.do input
+  JSON.generate action.execute input
 end
 
 get '/user/:id' do
   input = { :id => params[:id].to_i }
   action = GetUser.new UserJack.new
-  JSON.generate action.do input
+  JSON.generate action.execute input
 end
 

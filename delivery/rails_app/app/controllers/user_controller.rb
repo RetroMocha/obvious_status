@@ -10,14 +10,14 @@ class UserController < ActionController::Base
   def get
     input = { :id => params[:id].to_i }
     action = GetUser.new UserJack.new
-    @user = action.do input
+    @user = action.execute input
   end
 
   def sign_up
     if request.post?
       input = { :handle => params[:handle] }
       action = CreateUser.new UserJack.new
-      @user = action.do input
+      @user = action.execute input
       redirect_to '/' 
     end
   end
