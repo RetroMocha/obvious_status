@@ -6,7 +6,7 @@ class ListStatuses
     @status_jack = status_jack
   end
 
-  def do
+  def execute
     # get the status updates from the jack
     status_data = @status_jack.list
     validate status_data 

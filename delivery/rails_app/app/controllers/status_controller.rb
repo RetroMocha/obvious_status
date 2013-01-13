@@ -16,18 +16,18 @@ class StatusController < ActionController::Base
 
     action = GetStatus.new StatusJack.new
     puts action.inspect
-    @status = action.do input
+    @status = action.execute input
 
     input = { :id => @status[:user_id] }
     action = GetUser.new UserJack.new
-    @user = action.do input
+    @user = action.execute input
   end
 
   def create
     if request.post?
       input = { :user_id => params[:user_id].to_i, :text => params[:text] }
       action = CreateStatus.new StatusJack.new
-      @status = action.do input
+      @status = action.execute input
       redirect_to '/'
     end
   end
@@ -36,13 +36,13 @@ class StatusController < ActionController::Base
     if request.get?
       input = { :id => params[:id].to_i }
       action = GetStatus.new StatusJack.new
-      @status = action.do input
+      @status = action.execute input
     end
  
     if request.post?
       input = { :id => params[:id].to_i, :text => params[:text], :user_id => params[:user_id].to_i }
       action = UpdateStatus.new StatusJack.new
-      @status = action.do input
+      @status = action.execute input
       redirect_to "/status/#{@status[:id]}" 
     end
   end
@@ -51,17 +51,17 @@ class StatusController < ActionController::Base
     if request.get?
       input = { :id => params[:id].to_i }
       action = GetStatus.new StatusJack.new
-      @status = action.do input
+      @status = action.execute input
      
       input = { :id => @status[:user_id] }
       action = GetUser.new UserJack.new
-      @user = action.do input
+      @user = action.execute input
     end
 
     if request.post?
       input = { :id => params[:id].to_i }
       action = RemoveStatus.new StatusJack.new
-      result = action.do input
+      result = action.execute input
       if result == true
         redirect_to '/'
       else

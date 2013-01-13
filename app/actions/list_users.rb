@@ -6,7 +6,7 @@ class ListUsers
     @user_jack = user_jack
   end
 
-  def do
+  def execute
     user_data = @user_jack.list
     validate user_data
     user_data
