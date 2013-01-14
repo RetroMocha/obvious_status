@@ -1,7 +1,7 @@
 source :rubygems
 
 # To run the tests you should only need obvious and validation
-gem 'obvious'
+gem 'obvious', :git => 'git://github.com/bundacia/obvious.git'
 gem 'validation'
 
 # The gems below are needed for the web app and various database plugs
