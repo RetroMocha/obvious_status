@@ -3,7 +3,7 @@ require_relative 'fs_plug'
 require_relative 'mysql_plug'
 require_relative 'mongo_plug'
 
-class UserJack
+class UserJack < UserJackContract
 
   def initialize plug = nil
     case plug
