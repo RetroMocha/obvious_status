@@ -5,15 +5,16 @@ class UserJackContract < Contract
 
   contract_for :save, {
     :input  => User.shape,
-    :output => User.shape,
+    :output => User.shape
   } 
 
   contract_for :get, {
     :input  => { :id => Fixnum },
-    :output => User.shape,
+    :output => User.shape
   } 
 
   contract_for :list, {
-    :output => [ User.shape ],
+    :input => nil,
+    :output => [ User.shape ]
   } 
 end
