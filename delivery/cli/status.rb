@@ -26,7 +26,7 @@ command :list do |c|
       action = ListUsers.new UserJack.new
       users = action.execute
       puts 'Users:'
-      users.each do |user|k
+      users.each do |user|
         puts "#{user[:handle]} - id: #{user[:id]}"
       end
     elsif entity == 'statuses'
