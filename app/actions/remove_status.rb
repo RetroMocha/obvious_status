@@ -1,17 +1,14 @@
+require 'obvious'
 require_relative '../entities/status'
 
 class RemoveStatus
+  include Obvious::Obj
 
   def initialize status_jack
     @status_jack = status_jack
   end
 
-  def execute input
-    # validate input
-    unless input.has_shape? :id => Fixnum
-      raise ArgumentError, 'invalid input format'
-    end
- 
+  define :execute, where_id: [:id, Fixnum] do |input|
     # remove the Status object and return the result
     @status_jack.remove :id => input[:id]
   end
