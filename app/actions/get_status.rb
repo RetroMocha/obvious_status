@@ -1,17 +1,14 @@
+require 'obvious'
 require_relative '../entities/status'
 
 class GetStatus
+  include Obvious::Obj
 
   def initialize status_jack
     @status_jack = status_jack
   end
 
-  def execute input
-    # validate input
-    unless input.has_shape? :id => Fixnum
-      raise ArgumentError, 'invalid input format'
-    end
-    
+  define :execute, where_id: [:id, Fixnum] do |input|
     # get the status update from the jack
     data = @status_jack.get :id => input[:id]
     
