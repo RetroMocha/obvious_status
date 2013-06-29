@@ -8,6 +8,7 @@ describe RemoveStatus do
     result = remove_status.execute where_id: 1 
     result.should be true
   end
+
 end
 
 
