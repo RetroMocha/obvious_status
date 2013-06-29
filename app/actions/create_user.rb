@@ -1,17 +1,14 @@
+require 'obvious'
 require_relative '../entities/user'
 
 class CreateUser
+  include Obvious::Obj
 
   def initialize user_jack
     @user_jack = user_jack
   end
 
-  def execute input
-    # validate input
-    unless input.has_shape? :handle => String
-      raise ArgumentError, 'invalid input format'
-    end
-    
+  define :execute, with_user_handle: [:handle, String] do |input|
     # set default id and values for new User entity
     input[:id] = -1    
 
