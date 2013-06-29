@@ -13,8 +13,7 @@ class GetUser
     data = @user_jack.get :id => input[:id]    
 
     # create/populate User object
-    user = User.new
-    user.populate data
+    user = User.new data
      
     # return the result
     user.to_hash 

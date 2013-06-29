@@ -15,8 +15,7 @@ class ListUsers
   def validate user_data
     # create/populate User objects for validation
     user_data.each do |entry| 
-      user = User.new
-      user.populate entry  
+      user = User.new entry
     end
   end
 end

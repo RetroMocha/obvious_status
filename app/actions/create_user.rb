@@ -13,8 +13,7 @@ class CreateUser
     input[:id] = -1    
 
     # create/populate User object
-    user = User.new
-    user.populate input
+    user = User.new input
     
     # save user to jack
     result = @user_jack.save user.to_hash

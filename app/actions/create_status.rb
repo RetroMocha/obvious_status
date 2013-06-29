@@ -13,8 +13,7 @@ class CreateStatus
     input[:id] = -1 # by convention id of -1 will tell the jack save method to create a new row/document/whatever
     
     # create/populate Status object
-    status = Status.new
-    status.populate input
+    status = Status.new input
     
     # save status to jack
     result = @status_jack.save status.to_hash   

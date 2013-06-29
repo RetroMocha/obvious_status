@@ -13,8 +13,7 @@ class GetStatus
     data = @status_jack.get :id => input[:id]
     
     # create/populate Status object
-    status = Status.new
-    status.populate data
+    status = Status.new data
      
     # return the result
     status.to_hash 
