@@ -24,50 +24,49 @@ MONGO_SESSION = Moped::Session.new ['127.0.0.1:27017']
 MONGO_SESSION.use 'status' 
 
 get '/status/list' do
-  action = ListStatuses.new StatusJack.new
-  JSON.generate action.execute
+  list_statuses = ListStatuses.new StatusJack.new
+  JSON.generate list_statuses.execute
 end
 
 post '/status/create' do
-  input = { :user_id => params[:user_id].to_i, :text => params[:text] }
-  action = CreateStatus.new StatusJack.new
-  JSON.generate action.execute input
+  create_status = CreateStatus.new StatusJack.new
+  result = create_status.execute with_user_id: params[:user_id].to_i, and_text: params[:text] 
+  JSON.generate result
 end
 
 get '/status/:id' do
-  input = { :id => params[:id].to_i }
-  action = GetStatus.new StatusJack.new
-  JSON.generate action.execute input
+  get_status = GetStatus.new StatusJack.new
+  result = get_status.execute where_id: params[:id].to_i  
+  JSON.generate result
 end
 
 post '/status/:id/update' do
-  input = { :id => params[:id].to_i, :text => params[:text], :user_id => params[:user_id].to_i }
-  action = UpdateStatus.new StatusJack.new
-  JSON.generate action.execute input
+  update_status = UpdateStatus.new StatusJack.new
+  result = update_status.execute for_status_id: params[:id].to_i, with_text: params[:text], and_user_id: params[:user_id].to_i
+  JSON.generate result
 end
 
 post '/status/:id/remove' do
-  input = { :id => params[:id].to_i }
-  action = RemoveStatus.new StatusJack.new
-  result = action.execute input
+  remove_status = RemoveStatus.new StatusJack.new
+  result = remove_status.execute where_id: params[:id].to_i 
   output = { :success => result }
   JSON.generate output 
 end
 
 get '/user/list' do
-  action = ListUsers.new UserJack.new
-  JSON.generate action.execute
+  list_users = ListUsers.new UserJack.new
+  JSON.generate list_users.execute
 end
 
 post '/user/create' do
-  input = { :handle => params[:handle] }
-  action = CreateUser.new UserJack.new
-  JSON.generate action.execute input
+  create_user = CreateUser.new UserJack.new
+  result = create_user.execute with_user_handle: params[:handle] 
+  JSON.generate result
 end
 
 get '/user/:id' do
-  input = { :id => params[:id].to_i }
-  action = GetUser.new UserJack.new
-  JSON.generate action.execute input
+  get_user = GetUser.new UserJack.new
+  result = get_user.execute where_id: params[:id].to_i 
+  JSON.generate result
 end
 
