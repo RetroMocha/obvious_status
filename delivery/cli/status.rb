@@ -23,15 +23,15 @@ command :list do |c|
   c.action do |args, options|
     entity = args[0]
     if entity == 'users'
-      action = ListUsers.new UserJack.new
-      users = action.execute
+      list_users = ListUsers.new UserJack.new
+      users = list_users.execute
       puts 'Users:'
       users.each do |user|k
         puts "#{user[:handle]} - id: #{user[:id]}"
       end
     elsif entity == 'statuses'
-      action = ListStatuses.new StatusJack.new
-      statuses = action.execute
+      list_statuses = ListStatuses.new StatusJack.new
+      statuses = list_statuses.execute
       puts 'Statuses:'
       statuses.each do |status|
         puts "#{status[:text]} - status id: #{status[:id]} user id: #{status[:user_id]}"
@@ -45,13 +45,13 @@ command :get do |c|
     entity = args[0]
     id = args[1]
     if entity == 'user'
-      action = GetUser.new UserJack.new
-      user = action.execute :id => id.to_i
+      get_user = GetUser.new UserJack.new
+      user = get_user.execute where_id: id.to_i
       puts 'User:'
       puts "#{user[:handle]} - id: #{user[:id]}"
     elsif entity == 'status'
-      action = GetStatus.new StatusJack.new
-      status = action.execute :id => id.to_i
+      get_status = GetStatus.new StatusJack.new
+      status = get_status.execute where_id: id.to_i
       puts 'Status:'
       puts "#{status[:text]} - status id: #{status[:id]} user id: #{status[:user_id]}"
     end
@@ -62,13 +62,13 @@ command :create do |c|
   c.action do |args, options|
     entity = args[0]
     if entity == 'user'
-      action = CreateUser.new UserJack.new
-      user = action.execute :handle => args[1]
+      create_user = CreateUser.new UserJack.new
+      user = create_user.execute with_user_handle: args[1]
       puts 'New User:'
       puts "#{user[:handle]} - id: #{user[:id]}"
     elsif entity == 'status'
-      action = CreateStatus.new StatusJack.new
-      status = action.execute :user_id => args[1].to_i, :text => args[2]
+      create_status = CreateStatus.new StatusJack.new
+      status = create_status.execute with_user_id: args[1].to_i, and_text: args[2]
       puts 'Status:'
       puts "#{status[:text]} - status id: #{status[:id]} user id: #{status[:user_id]}"
     end
@@ -81,8 +81,8 @@ command :update do |c|
     if entity == 'user'
       # we don't update users now, but we might later
     elsif entity == 'status'
-      action = UpdateStatus.new StatusJack.new
-      status = action.execute :id => args[1].to_i, :user_id => args[2].to_i, :text => args[3]
+      update_status = UpdateStatus.new StatusJack.new
+      status = update_status.execute for_status_id: args[1].to_i, with_text: args[3], and_user_id: args[2].to_i 
       puts 'Status:'
       puts "#{status[:text]} - status id: #{status[:id]} user id: #{status[:user_id]}"
     end
@@ -96,8 +96,8 @@ command :remove do |c|
     if entity == 'user'
       # we don't update users now, but we might later
     elsif entity == 'status'
-      action = RemoveStatus.new StatusJack.new
-      status = action.execute :id => args[1].to_i
+      remove_status = RemoveStatus.new StatusJack.new
+      status = remove_status.execute where_id: args[1].to_i
       puts 'Status Removed'
     end
   end
