@@ -12,7 +12,7 @@ describe StatusJackContract do
     end
 
     it 'should raise an error with invalid input' do
-      input = { :user_id => nil, :text => nil, :id => nil }
+      input = { }
       jack = StatusJackDouble.create :default
       expect { jack.save input }.to raise_error ContractInputError
     end
@@ -34,7 +34,7 @@ describe StatusJackContract do
     end
 
     it 'should raise an error with invalid input' do
-      input = { :id => nil }
+      input = { }
       jack = StatusJackDouble.create :default
       expect { jack.get input }.to raise_error ContractInputError
     end
@@ -73,7 +73,7 @@ describe StatusJackContract do
     end
 
     it 'should raise an error with invalid input' do
-      input = { :id => nil }
+      input = {  }
       jack = StatusJackDouble.create :default
       expect { jack.remove input }.to raise_error ContractInputError
     end

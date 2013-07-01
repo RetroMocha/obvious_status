@@ -9,13 +9,14 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   def index
-   # get list of statuses 
-    action = ListStatuses.new StatusJack.new
-    @statuses = action.execute
+    # get list of statuses 
+    list_statuses = ListStatuses.new StatusJack.new
+    @statuses = list_statuses.execute
 
     # get list of users
-    action = ListUsers.new UserJack.new
-    users = action.execute
+    list_users = ListUsers.new UserJack.new
+    users = list_users.execute
+
     @users = {}
     users.each do |user|
       @users[user[:id]] = user

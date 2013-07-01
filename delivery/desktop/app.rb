@@ -16,11 +16,11 @@ require 'purple_shoes'
 Shoes.app :title => 'Status' do
   
   def draw_ui
-    action = ListUsers.new UserJack.new
-    @users = action.execute
+    list_users = ListUsers.new UserJack.new
+    @users = list_users.execute
 
-    action = ListStatuses.new StatusJack.new
-    @statuses = action.execute
+    list_statuses = ListStatuses.new StatusJack.new
+    @statuses = list_statuses.execute
 
     para 'Users:'
     @users.each do |user|
@@ -29,8 +29,8 @@ Shoes.app :title => 'Status' do
         window do
           status = edit_box ''
           button 'Create status' do
-            action = CreateStatus.new StatusJack.new
-            result = action.execute :user_id => user[:id], :text => status.text
+            create_status = CreateStatus.new StatusJack.new
+            result = create_status.execute with_user_id: user[:id], and_text: status.text
             owner.clear
             owner.draw_ui    
             close

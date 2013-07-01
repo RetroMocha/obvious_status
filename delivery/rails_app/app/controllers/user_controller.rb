@@ -8,16 +8,14 @@ class UserController < ActionController::Base
   protect_from_forgery
 
   def get
-    input = { :id => params[:id].to_i }
-    action = GetUser.new UserJack.new
-    @user = action.execute input
+    get_user = GetUser.new UserJack.new
+    @user = get_user.execute where_id: params[:id].to_i 
   end
 
   def sign_up
     if request.post?
-      input = { :handle => params[:handle] }
-      action = CreateUser.new UserJack.new
-      @user = action.execute input
+      create_user = CreateUser.new UserJack.new
+      @user = create_user.execute with_user_handle: params[:handle] 
       redirect_to '/' 
     end
   end
