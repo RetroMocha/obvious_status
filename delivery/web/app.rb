@@ -24,12 +24,12 @@ MONGO_SESSION.use 'status'
 
 get '/' do
   # get list of statuses 
-  action = ListStatuses.new StatusJack.new
-  @statuses = action.execute
+  list_statuses = ListStatuses.new StatusJack.new
+  @statuses = list_statuses.execute
 
   # get list of users
-  action = ListUsers.new UserJack.new
-  users = action.execute
+  list_users = ListUsers.new UserJack.new
+  users = list_users.execute
   @users = {}
   users.each do |user|
     @users[user[:id]] = user
@@ -43,9 +43,8 @@ get '/:user/create-status' do
 end
 
 post '/:user/create-status' do
-  input = { :user_id => params[:user_id].to_i, :text => params[:text] }
-  action = CreateStatus.new StatusJack.new
-  @status = action.execute input
+  create_status = CreateStatus.new StatusJack.new
+  @status = create_status.execute with_user_id: params[:user_id].to_i, and_text: params[:text] 
   redirect '/'
 end
 
@@ -54,59 +53,50 @@ get '/sign-up' do
 end
 
 post '/sign-up' do
-  input = { :handle => params[:handle] }
-  action = CreateUser.new UserJack.new
-  @user = action.execute input
+  create_user = CreateUser.new UserJack.new
+  @user = create_user.execute with_user_handle: params[:handle] 
   redirect "/user/#{@user[:id]}"
 end
 
 get '/user/:id' do
-  input = { :id => params[:id].to_i }
-  action = GetUser.new UserJack.new
-  @user = action.execute input
+  get_user = GetUser.new UserJack.new
+  @user = get_user.execute where_id: params[:id].to_i 
   slim :get_user
 end
 
 get '/status/:id' do
-  input = { :id => params[:id].to_i }
-  action = GetStatus.new StatusJack.new
-  @status = action.execute input
+  get_status = GetStatus.new StatusJack.new
+  @status = get_status.execute where_id: params[:id].to_i  
 
-  input = { :id => @status[:user_id] }
-  action = GetUser.new UserJack.new
-  @user = action.execute input
+  get_user = GetUser.new UserJack.new
+  @user = get_user.execute where_id: @status[:user_id] 
   slim :get_status
 end
 
 get '/status/:id/update' do
-  input = { :id => params[:id].to_i }
-  action = GetStatus.new StatusJack.new
-  @status = action.execute input
+  get_status = GetStatus.new StatusJack.new
+  @status = get_status.execute where_id: params[:id].to_i 
   slim :update_status
 end
 
 post '/status/:id/update' do
-  input = { :id => params[:id].to_i, :text => params[:text], :user_id => params[:user_id].to_i }
-  action = UpdateStatus.new StatusJack.new
-  @status = action.execute input
+  update_status = UpdateStatus.new StatusJack.new
+  @status = update_status.execute for_status_id: params[:id].to_i, with_text: params[:text], and_user_id: params[:user_id].to_i
   redirect "/status/#{@status[:id]}" 
 end
 
 get '/status/:id/remove' do
-  input = { :id => params[:id].to_i }
-  action = GetStatus.new StatusJack.new
-  @status = action.execute input
- 
-  input = { :id => @status[:user_id] }
-  action = GetUser.new UserJack.new
-  @user = action.execute input
+  get_status = GetStatus.new StatusJack.new
+  @status = get_status.execute where_id: params[:id].to_i  
+
+  get_user = GetUser.new UserJack.new
+  @user = get_user.execute where_id: @status[:user_id] 
   slim :remove_status
 end
 
 post '/status/:id/remove' do
-  input = { :id => params[:id].to_i }
-  action = RemoveStatus.new StatusJack.new
-  result = action.execute input
+  remove_status = RemoveStatus.new StatusJack.new
+  result = remove_status.execute where_id: params[:id].to_i 
   if result == true
     redirect '/'
   else
