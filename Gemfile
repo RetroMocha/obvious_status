@@ -1,4 +1,4 @@
-source :rubygems
+source 'https://rubygems.org'
 
 # To run the tests you should only need obvious and validation
 gem 'obvious'
