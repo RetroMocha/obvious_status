@@ -92,4 +92,4 @@ just return hashes, working with the output in various apps was trivial. No app 
 The goal of Status was to show that both your delivery mechanism and your database can be decoupled and pluggable if you
 use the Obvious Architecture. Tests are fast. Development is fun. 
 
-If you have questions don't hesitate to tweet me @programminggeek 
+If you have questions don't hesitate to tweet me @_brianknapp 
