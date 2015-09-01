@@ -10,6 +10,12 @@ and even a desktop app without changing any of the app/ code. Also, the data lay
 be powered by JSON files, MySQL, MongoDB, or even the Status json api by simply pointing the jack objects at different 
 database plugs. 
 
+
+# Notice:
+
+This project is no longer under active development is only made available for historical purposes.
+
+
 Basic Structure
 ---------------
 
