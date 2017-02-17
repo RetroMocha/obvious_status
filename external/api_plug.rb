@@ -21,7 +21,7 @@ class ApiPlug
     if input[:id] == -1
       url << "/create" 
     else
-      url << "/#{@input[:id]}/update"
+      url << "/#{input[:id]}/update"
     end 
     response = RestClient.post url, input 
     JSON.parse response, :symbolize_names => true
