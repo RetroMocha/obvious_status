@@ -8,18 +8,18 @@ class CreateStatus
     @status_jack = status_jack
   end
 
-  define :execute, with_user_id: [:user_id, Fixnum], and_text: [:text, String] do |input|
+  define :exec, user_id: Fixnum, text: String do |input|
     # set default id and values for new Status entity
     input[:id] = -1 # by convention id of -1 will tell the jack save method to create a new row/document/whatever
-    
+
     # create/populate Status object
     status = Status.new input
-    
+
     # save status to jack
-    result = @status_jack.save status.to_hash   
- 
+    result = @status_jack.save status.to_hash
+
     # return the result
-    result 
+    result
   end
 
 end
