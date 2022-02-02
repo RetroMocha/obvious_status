@@ -1,4 +1,4 @@
-require_relative '../../contracts/status_jack_contract'
+require_relative '../../app/contracts/status_jack_contract'
 
 class StatusJackDouble
   def self.create behavior
@@ -12,19 +12,18 @@ class StatusJackDouble
 end
 
 class StatusJack_Default < StatusJackContract
-
   def save input
-    { :user_id => 1, :text => 'making a sandwich', :id => 1 }
+    { user_id: 1, text: 'making a sandwich', id: 1 }
   end
 
   def get input
-    { :user_id => 1, :text => 'making a sandwich', :id => 1 }
+    { user_id: 1, text: 'making a sandwich', id: 1 }
   end
 
   def list
     [
-      { :user_id => 1, :text => 'making a sandwich', :id => 1 },
-      { :user_id => 1, :text => 'making another sandwich', :id => 2 }
+      { user_id: 1, text: 'making a sandwich', id: 1 },
+      { user_id: 1, text: 'making another sandwich', id: 2 }
     ]
   end
 
@@ -34,16 +33,15 @@ class StatusJack_Default < StatusJackContract
 end
 
 class StatusJack_BadOutput < StatusJackContract
-
   def save input
     nil
   end
 
   def get input
-    nil 
+    nil
   end
 
-  def list 
+  def list
     nil
   end
 

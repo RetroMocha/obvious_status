@@ -21,5 +21,4 @@ class CreateStatus
     # return the result
     result
   end
-
 end

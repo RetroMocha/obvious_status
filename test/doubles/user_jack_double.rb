@@ -1,4 +1,4 @@
-require_relative '../../contracts/user_jack_contract'
+require_relative '../../app/contracts/user_jack_contract'
 
 class UserJackDouble
   def self.create behavior
@@ -13,17 +13,17 @@ end
 
 class UserJack_Default < UserJackContract
   def save input
-    { :handle => 'chef', :id => 1 }
+    { handle: 'chef', id: 1 }
   end
 
   def get input
-    { :handle => 'chef', :id => 1 }
+    { handle: 'chef', id: 1 }
   end
 
-  def list 
+  def list
     [
-      { :handle => 'chef', :id => 1 },
-      { :handle => 'ninja', :id => 2 }
+      { handle: 'chef', id: 1 },
+      { handle: 'ninja', id: 2 }
     ]
   end
 end
@@ -41,4 +41,3 @@ class UserJack_BadOutput < UserJackContract
     nil
   end
 end
-

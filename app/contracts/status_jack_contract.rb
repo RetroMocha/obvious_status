@@ -1,27 +1,24 @@
 require 'obvious'
-
 require_relative '../entities/status'
 
-class StatusJackContract < Contract
-
+class StatusJackContract < Obvious::Contract
   contract_for :save, {
-    :input  => Status.shape,
-    :output => Status.shape
+    input: Status.shape,
+    output: Status.shape
   }
 
   contract_for :get, {
-    :input  => { :id => Fixnum },
-    :output => Status.shape
+    input: { id: Fixnum },
+    output: Status.shape
   }
 
   contract_for :list, {
-    :input  => nil,
-    :output => [ Status.shape ]
+    input: nil,
+    output: [ Status.shape ]
   }
 
   contract_for :remove, {
-    :input  => { :id => Fixnum },
-    :output => true
+    input: { id: Fixnum },
+    output: true
   }
-
 end
