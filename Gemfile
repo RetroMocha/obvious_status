@@ -8,9 +8,4 @@ gem 'obvious', '~> 0.2.0'
 gem 'sinatra'
 gem 'sequel'
 gem 'pg'
-
-group :development do
-  gem 'shotgun'
-  gem 'puma'
-  gem 'guard'
-end
+gem 'puma'
