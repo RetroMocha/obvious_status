@@ -1,5 +1,5 @@
 require_relative '../test_helper'
-require './app/actions/create_status'
+require_relative '../../app/actions/create_status'
 require_relative '../doubles/status_jack_double'
 
 class CreateStatusTest < Minitest::Test
