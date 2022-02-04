@@ -2,7 +2,7 @@ require_relative '../test_helper'
 require_relative '../../app/contracts/status_jack_contract'
 require_relative '../doubles/status_jack_double'
 
-class StatusTest < Minitest::Test
+class StatusJackContractTest < Minitest::Test
   def test_save_valid_input
     input = { user_id: 1, text: 'making a sandwich', id: 1 }
     result = StatusJackDouble.create(:default).save(input)
