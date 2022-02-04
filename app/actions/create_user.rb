@@ -8,18 +8,18 @@ class CreateUser
     @user_jack = user_jack
   end
 
-  define :execute, with_user_handle: [:handle, String] do |input|
+  define :exec, handle: String do |input|
     # set default id and values for new User entity
-    input[:id] = -1    
+    input[:id] = -1
 
     # create/populate User object
     user = User.new input
-    
+
     # save user to jack
     result = @user_jack.save user.to_hash
- 
+
     # return the result
-    result    
+    result
   end
 
 end
