@@ -14,4 +14,8 @@ class StatusTest < Minitest::Test
       Status.new(id: nil, user_id: nil, text: nil)
     end
   end
+
+  def test_existing_shape
+    assert_equal({text: String, user_id: Fixnum, id: Fixnum}, Status.shape)
+  end
 end
