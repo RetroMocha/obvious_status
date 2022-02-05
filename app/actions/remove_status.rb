@@ -8,9 +8,8 @@ class RemoveStatus
     @status_jack = status_jack
   end
 
-  define :execute, where_id: [:id, Fixnum] do |input|
+  define :exec, id: Fixnum do |input|
     # remove the Status object and return the result
     @status_jack.remove :id => input[:id]
   end
-
 end
