@@ -50,15 +50,16 @@ post '/:user/create-status' do
   redirect '/'
 end
 
-# get '/sign-up' do
-#   slim :sign_up
-# end
-#
-# post '/sign-up' do
+get '/sign-up' do
+  erb :sign_up
+end
+
+post '/sign-up' do
 #   create_user = CreateUser.new UserJack.new
 #   @user = create_user.execute with_user_handle: params[:handle]
 #   redirect "/user/#{@user[:id]}"
-# end
+  redirect '/'
+end
 
 get '/user/:id' do
   # get_user = GetUser.new UserJack.new
@@ -68,37 +69,44 @@ get '/user/:id' do
   erb :get_user
 end
 
-# get '/status/:id' do
+get '/status/:id' do
 #   get_status = GetStatus.new StatusJack.new
 #   @status = get_status.execute where_id: params[:id].to_i
-#
+  @status = { user_id: 1, text: 'making a sandwich', id: 1 }
 #   get_user = GetUser.new UserJack.new
 #   @user = get_user.execute where_id: @status[:user_id]
-#   slim :get_status
-# end
-#
-# get '/status/:id/update' do
+  @user = { handle: 'chef', id: 1 }
+
+  erb :get_status
+end
+
+get '/status/:id/update' do
 #   get_status = GetStatus.new StatusJack.new
 #   @status = get_status.execute where_id: params[:id].to_i
-#   slim :update_status
-# end
-#
-# post '/status/:id/update' do
+  @status = { user_id: 1, text: 'making a sandwich', id: 1 }
+
+  erb :update_status
+end
+
+post '/status/:id/update' do
 #   update_status = UpdateStatus.new StatusJack.new
 #   @status = update_status.execute for_status_id: params[:id].to_i, with_text: params[:text], and_user_id: params[:user_id].to_i
-#   redirect "/status/#{@status[:id]}"
-# end
-#
-# get '/status/:id/remove' do
+  redirect "/status/#{params[:id]}"
+end
+
+get '/status/:id/remove' do
 #   get_status = GetStatus.new StatusJack.new
 #   @status = get_status.execute where_id: params[:id].to_i
-#
+  @status = { user_id: 1, text: 'making a sandwich', id: 1 }
+
 #   get_user = GetUser.new UserJack.new
 #   @user = get_user.execute where_id: @status[:user_id]
-#   slim :remove_status
-# end
-#
-# post '/status/:id/remove' do
+  @user = { handle: 'chef', id: 1 }
+
+  erb :remove_status
+end
+
+post '/status/:id/remove' do
 #   remove_status = RemoveStatus.new StatusJack.new
 #   result = remove_status.execute where_id: params[:id].to_i
 #   if result == true
@@ -106,4 +114,5 @@ end
 #   else
 #     'ERROR'
 #   end
-# end
+  redirect '/'
+end

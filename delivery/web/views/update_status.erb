@@ -1,0 +1,13 @@
+<style>
+  textarea {
+    width: 500px;
+    height: 100px;
+  }
+</style>
+<h1>What is your status?</h1>
+<form action="" method="post">
+  <input name="user_id" type="hidden" value="<%= @status[:user_id] %>">
+  <textarea name="text"><%= @status[:text] %></textarea>
+  <br>
+  <input class="btn btn-primary" type="submit" value="Post your status">
+</form>

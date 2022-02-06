@@ -1,0 +1,10 @@
+<h2><%= @status[:text] %></h2>
+
+<p style='width: 50%; text-align: right;'>
+  - <%= "<a href='/user/#{@status[:user_id]}'>#{@user[:handle]}</a>" %>
+</p>
+<br><br>
+
+<a class='btn btn-primary' href='/status/<%= @status[:id] %>/update'>Edit Status</a>
+&nbsp;
+<a class='btn btn-danger' href='/status/<%= @status[:id] %>/remove'>Remove Status</a>
