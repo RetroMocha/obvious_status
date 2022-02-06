@@ -11,7 +11,7 @@ Rake::TestTask.new(:test) do |t|
 end
 
 task :server do
-  sh 'cd delivery/web && bundle exec shotgun -o 0.0.0.0 -p 9393 ./app.rb '
+  sh 'cd delivery/web && bundle exec rerun app.rb '
 end
 
 task default: :test

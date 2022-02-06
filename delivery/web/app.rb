@@ -20,7 +20,11 @@ get '/' do
   # get list of statuses
   # list_statuses = ListStatuses.new StatusJack.new
   # @statuses = list_statuses.execute
-  #
+  @statuses = [
+    { user_id: 1, text: 'making a sandwich', id: 1 },
+    { user_id: 1, text: 'making another sandwich', id: 2 }
+  ]
+
   # # get list of users
   # list_users = ListUsers.new UserJack.new
   # users = list_users.execute
@@ -28,6 +32,10 @@ get '/' do
   # users.each do |user|
   #   @users[user[:id]] = user
   # end
+  @users = [
+    { handle: 'chef', id: 1 },
+    { handle: 'ninja', id: 2 }
+  ]
 
   erb :index
 end
