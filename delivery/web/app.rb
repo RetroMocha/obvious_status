@@ -39,11 +39,11 @@ get '/' do
 
   erb :index
 end
-#
-# get '/:user/create-status' do
-#   slim :create_status
-# end
-#
+
+get '/:user/create-status' do
+  erb :create_status
+end
+
 # post '/:user/create-status' do
 #   create_status = CreateStatus.new StatusJack.new
 #   @status = create_status.execute with_user_id: params[:user_id].to_i, and_text: params[:text]
