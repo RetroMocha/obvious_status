@@ -44,12 +44,12 @@ get '/:user/create-status' do
   erb :create_status
 end
 
-# post '/:user/create-status' do
-#   create_status = CreateStatus.new StatusJack.new
-#   @status = create_status.execute with_user_id: params[:user_id].to_i, and_text: params[:text]
-#   redirect '/'
-# end
-#
+post '/:user/create-status' do
+  # create_status = CreateStatus.new StatusJack.new
+  # @status = create_status.execute with_user_id: params[:user_id].to_i, and_text: params[:text]
+  redirect '/'
+end
+
 # get '/sign-up' do
 #   slim :sign_up
 # end
@@ -59,13 +59,15 @@ end
 #   @user = create_user.execute with_user_handle: params[:handle]
 #   redirect "/user/#{@user[:id]}"
 # end
-#
-# get '/user/:id' do
-#   get_user = GetUser.new UserJack.new
-#   @user = get_user.execute where_id: params[:id].to_i
-#   slim :get_user
-# end
-#
+
+get '/user/:id' do
+  # get_user = GetUser.new UserJack.new
+  # @user = get_user.execute where_id: params[:id].to_i
+
+  @user = { handle: 'chef', id: 1 }
+  erb :get_user
+end
+
 # get '/status/:id' do
 #   get_status = GetStatus.new StatusJack.new
 #   @status = get_status.execute where_id: params[:id].to_i
