@@ -11,7 +11,7 @@
   <div class="col-3">
     <h3>Users</h3>
     <% @users.each do |user| %>
-      <%= "<a href='/user/#{user[:id]}'>#{user[:handle]}</a>" %>
+      <%= "<a href='/user/#{user[1][:id]}'>#{user[1][:handle]}</a>" %>
     <% end %>
   </div>
 </div>

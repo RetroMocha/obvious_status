@@ -1,6 +1,6 @@
 require 'json'
 
-class FsPlug 
+class FsPlug
 
   def initialize filename
     @filename = filename
@@ -26,12 +26,14 @@ class FsPlug
       data << h
     end
 
-    # add data to the list if it's a new element 
-    input[:id] = max_id + 1
-    data << input if new_element
+    # add data to the list if it's a new element
+    if new_element
+      input[:id] = max_id + 1
+      data << input
+    end
 
     # save the data back to FS
-    json_data = JSON.pretty_generate data 
+    json_data = JSON.pretty_generate data
     File.open(@filename, 'w') {|f| f.write(json_data) }
 
     # return the transformed data
@@ -44,11 +46,11 @@ class FsPlug
 
     # parse the json list
     data = JSON.parse contents, :symbolize_names => true
-    
+
     # return the transformed data
-    data 
+    data
   end
-  
+
   def get input
     # open the file
     contents = File.read @filename
@@ -60,9 +62,9 @@ class FsPlug
     # transform the data if needed
     query.each do |h|
       return h if h[:id] == input[:id]
-    end 
+    end
 
-    {} 
+    {}
   end
 
   def remove input
@@ -76,19 +78,16 @@ class FsPlug
     # transform the data if needed
     query.each do |h|
       unless h[:id] == input[:id]
-        data << h 
+        data << h
       end
     end
 
     # save the data back to FS
-    json_data = JSON.pretty_generate data 
+    json_data = JSON.pretty_generate data
     File.open(@filename, 'w') {|f| f.write(json_data) }
 
     # return true on success
-    true 
+    true
   end
 
 end
-
-
-

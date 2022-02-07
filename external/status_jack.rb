@@ -1,13 +1,11 @@
 require_relative '../app/contracts/status_jack_contract'
 require_relative 'fs_plug'
 require_relative 'mysql_plug'
-require_relative 'mongo_plug'
-require_relative 'api_plug'
 
 class StatusJack < StatusJackContract
-  def initialize plug = nil 
+  def initialize plug = nil
     case plug
-    when :fs 
+    when :fs
       @plug = FsPlug.new 'data/statuses.json'
     when :mysql
       @plug = MysqlPlug.new :statuses
@@ -16,7 +14,7 @@ class StatusJack < StatusJackContract
     when :api
       @plug = ApiPlug.new :status
     else
-      @plug = FsPlug.new 'data/statuses.json' 
+      @plug = FsPlug.new 'data/statuses.json'
     end
   end
 

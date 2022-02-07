@@ -1,13 +1,12 @@
 require_relative '../app/contracts/user_jack_contract'
 require_relative 'fs_plug'
 require_relative 'mysql_plug'
-require_relative 'mongo_plug'
 
 class UserJack < UserJackContract
 
   def initialize plug = nil
     case plug
-    when :fs 
+    when :fs
       @plug = FsPlug.new 'data/users.json'
     when :mysql
       @plug = MysqlPlug.new :users
@@ -16,7 +15,7 @@ class UserJack < UserJackContract
     when :api
       @plug = ApiPlug.new :user
     else
-      @plug = FsPlug.new 'data/users.json' 
+      @plug = FsPlug.new 'data/users.json'
     end
   end
 
