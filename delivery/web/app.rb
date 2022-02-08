@@ -1,5 +1,4 @@
 require 'sinatra'
-# require 'sequel'
 
 require_relative '../../app/actions/list_statuses'
 require_relative '../../app/actions/create_status'
@@ -11,8 +10,6 @@ require_relative '../../app/actions/list_users'
 require_relative '../../app/actions/create_user'
 require_relative '../../external/status_jack'
 require_relative '../../external/user_jack'
-
-# DB = Sequel.connect 'postgres://127.0.0.1:3306/status?user=root' # this should probably be set as an environment variable
 
 get '/' do
   list_statuses = ListStatuses.new(StatusJack.new)

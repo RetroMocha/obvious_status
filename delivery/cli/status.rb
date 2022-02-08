@@ -1,5 +1,4 @@
 #!/usr/bin/env ruby
-
 require 'commander/import'
 
 require_relative '../../app/actions/list_statuses'
@@ -7,7 +6,6 @@ require_relative '../../app/actions/create_status'
 require_relative '../../app/actions/get_status'
 require_relative '../../app/actions/update_status'
 require_relative '../../app/actions/remove_status'
-
 require_relative '../../app/actions/get_user'
 require_relative '../../app/actions/list_users'
 require_relative '../../app/actions/create_user'
@@ -23,15 +21,15 @@ command :list do |c|
   c.action do |args, options|
     entity = args[0]
     if entity == 'users'
-      list_users = ListUsers.new UserJack.new
-      users = list_users.execute
+      list_users = ListUsers.new(UserJack.new)
+      users = list_users.exec
       puts 'Users:'
-      users.each do |user|k
+      users.each do |user|
         puts "#{user[:handle]} - id: #{user[:id]}"
       end
     elsif entity == 'statuses'
-      list_statuses = ListStatuses.new StatusJack.new
-      statuses = list_statuses.execute
+      list_statuses = ListStatuses.new(StatusJack.new)
+      statuses = list_statuses.exec
       puts 'Statuses:'
       statuses.each do |status|
         puts "#{status[:text]} - status id: #{status[:id]} user id: #{status[:user_id]}"
@@ -45,13 +43,13 @@ command :get do |c|
     entity = args[0]
     id = args[1]
     if entity == 'user'
-      get_user = GetUser.new UserJack.new
-      user = get_user.execute where_id: id.to_i
+      get_user = GetUser.new(UserJack.new)
+      user = get_user.exec(id: id.to_i)
       puts 'User:'
       puts "#{user[:handle]} - id: #{user[:id]}"
     elsif entity == 'status'
-      get_status = GetStatus.new StatusJack.new
-      status = get_status.execute where_id: id.to_i
+      get_status = GetStatus.new(StatusJack.new)
+      status = get_status.exec(id: id.to_i)
       puts 'Status:'
       puts "#{status[:text]} - status id: #{status[:id]} user id: #{status[:user_id]}"
     end
@@ -82,7 +80,7 @@ command :update do |c|
       # we don't update users now, but we might later
     elsif entity == 'status'
       update_status = UpdateStatus.new StatusJack.new
-      status = update_status.execute for_status_id: args[1].to_i, with_text: args[3], and_user_id: args[2].to_i 
+      status = update_status.execute for_status_id: args[1].to_i, with_text: args[3], and_user_id: args[2].to_i
       puts 'Status:'
       puts "#{status[:text]} - status id: #{status[:id]} user id: #{status[:user_id]}"
     end
