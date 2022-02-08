@@ -15,7 +15,7 @@ class ListStatuses
   def validate status_data
     # create/populate Status objects for validation
     status_data.each do |entry|
-      status = Status.new entry
+      Status.new(entry)
     end
   end
 end

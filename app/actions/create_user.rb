@@ -21,5 +21,4 @@ class CreateUser
     # return the result
     result
   end
-
 end

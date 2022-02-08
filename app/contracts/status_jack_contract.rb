@@ -8,7 +8,7 @@ class StatusJackContract < Obvious::Contract
   }
 
   contract_for :get, {
-    input: { id: Fixnum },
+    input: { id: Integer },
     output: Status.shape
   }
 
@@ -18,7 +18,7 @@ class StatusJackContract < Obvious::Contract
   }
 
   contract_for :remove, {
-    input: { id: Fixnum },
+    input: { id: Integer },
     output: true
   }
 end

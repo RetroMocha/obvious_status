@@ -8,7 +8,7 @@ class GetStatus
     @status_jack = status_jack
   end
 
-  define :exec, id: Fixnum do |input|
+  define :exec, id: Integer do |input|
     # get the status update from the jack
     data = @status_jack.get(id: input[:id])
 

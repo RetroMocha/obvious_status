@@ -15,6 +15,6 @@ class UserTest < Minitest::Test
   end
 
   def test_existing_shape
-    assert_equal({handle: String, id: Fixnum}, User.shape)
+    assert_equal({handle: String, id: Integer}, User.shape)
   end
 end

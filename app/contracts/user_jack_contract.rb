@@ -9,7 +9,7 @@ class UserJackContract < Obvious::Contract
   }
 
   contract_for :get, {
-    input: { id: Fixnum },
+    input: { id: Integer },
     output: User.shape
   }
 

@@ -8,7 +8,7 @@ class GetUser
     @user_jack = user_jack
   end
 
-  define :exec, id: Fixnum do |input|
+  define :exec, id: Integer do |input|
    # get the user from the jack
     data = @user_jack.get(id: input[:id])
 
