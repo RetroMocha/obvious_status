@@ -1,1 +1,10 @@
-[ { "handle": "chef", "id": 1 } ]
+[
+  {
+    "handle": "chef",
+    "id": 1
+  },
+  {
+    "handle": "bob1",
+    "id": 2
+  }
+]

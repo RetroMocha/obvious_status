@@ -1,22 +1,13 @@
 source 'https://rubygems.org'
+ruby '~> 3.1.0'
 
 # To run the tests you should only need obvious and validation
-gem 'obvious'
-gem 'validation'
+gem 'obvious', '~> 0.2.0'
 
-# The gems below are needed for the web app and various database plugs
+# For web app
 gem 'sinatra'
-gem 'slim'
-gem 'sequel'
-gem 'mysql'
-gem 'moped'
-gem 'rest-client'
+gem 'rerun'
+gem 'puma'
 
-group :development do
-  gem 'rspec'
-  gem 'shotgun'
-  gem 'thin'
-  gem 'guard'
-  gem 'guard-rspec'
-  gem 'rb-fsevent'
-end
+# For cli app
+gem 'commander'

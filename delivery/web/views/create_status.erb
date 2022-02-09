@@ -1,0 +1,15 @@
+<style>
+  textarea {
+    width: 500px;
+    height: 100px;
+  }
+</style>
+
+<h1> What is your status?</h1>
+
+<form method='post' action=''>
+  <input type='hidden' name='user_id' value='<%= params[:user] %>'>
+  <textarea name='text'></textarea>
+  <br>
+  <input class='btn btn-primary' type='submit' values='Post your status'>
+</form>

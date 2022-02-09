@@ -1,0 +1,14 @@
+<h2>Are you sure you want to remove this status?</h2>
+<p>
+  <%= @status[:text] %>
+</p>
+<p style="width: 50%; text-align: right">
+  - <a href='/user/<%= @status[:user_id] %>'><%= @user[:handle] %></a>
+</p>
+<br><br>
+
+<form method="post">
+  <a class="btn btn-primary" href="/status/<%= @status[:id] %>">No</a>
+  &nbsp; &nbsp;
+  <input class="btn btn-danger" type="submit" value="Yes" />
+</form>

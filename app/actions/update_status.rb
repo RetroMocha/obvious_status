@@ -8,20 +8,19 @@ class UpdateStatus
     @status_jack = status_jack
   end
 
-  define :execute, for_status_id: [:id, Fixnum], with_text: [:text, String], and_user_id: [:user_id, Fixnum] do |input|
+  define :exec, id: Integer, text: String, user_id: Integer do |input|
     # get the status update from the jack
-    data = @status_jack.get :id => input[:id]
-    
+    data = @status_jack.get(id: input[:id])
+
     # Create valid Status object from data source
     status = Status.new data
-    updated_data = status.to_hash.merge! input 
+    updated_data = status.to_hash.merge! input
 
     # update the Status object and save
-    status = Status.new updated_data 
+    status = Status.new updated_data
     result = @status_jack.save status.to_hash
-    
-    # return the result
-    result 
-  end
 
+    # return the result
+    result
+  end
 end

@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col-9">
+    <h1> What is your status?</h1>
+    <% @statuses.each do |status| %>
+      <div>
+        <%= "#{status[:text]} [<a href='/status/#{status[:id]}'>link</a>]- <a href='/user/#{status[:user_id]}'>#{@users[status[:user_id]][:handle]}</a>" %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="col-3">
+    <h3>Users</h3>
+    <% @users.each do |user| %>
+      <%= "<a href='/user/#{user[1][:id]}'>#{user[1][:handle]}</a>" %>
+    <% end %>
+  </div>
+</div>
