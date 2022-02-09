@@ -10,28 +10,39 @@ Obvious.
 Basic Structure
 ---------------
 
-Obvious is not traditional MVC. It's a different approach. The business logic
-and the data persistence are separated into separate folders. The app folder
-contains your business rules and entities, which would be the M in the MVC
-pattern. The  external folder contains your data persistence layer - ORM's,
-API's, caching, queues. The delivery folder is where the VC in MVC would live.
+Obvious is not MVC. It's a different approach. The business logic and the data 
+persistence are separated. 
+
+ - `app` folder contains your business rules and entities. 
+ - `external` folder contains your data persistence layer - ORM's, API's, caching, 
+queues. 
+ - `delivery` folder is where your delivery specific details - UI, 
+configuration, routing, etc. live.
+ - `test` folder contains your tests 😃
+
+Installation
+------------
+
+To do basic install run:
+    
+    bundle install
+
+That should install required ruby gems to get the project running.
 
 Running The Tests
 -----------------
 
-To run the tests for the app/ is easy. In the obvious_status project root run:
+To run the tests for the app/ is easy. In the project root run:
 
-    bundle install
     rake test
 
-The tests should all be green and run in about 0.02 seconds.
+The tests should all be green and run in about 0.01 seconds.
 
 Running The Apps
 ----------------
 
 To run the web app run:
 
-    bundle install
     rake server
 
 And navigate to http://localhost:4567/
